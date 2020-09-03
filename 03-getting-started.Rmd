@@ -18,11 +18,7 @@ knitr::opts_chunk$set(
 
 # Install
 
-## Option GPU: Hard to install but fast
-
-How can I find out if I have a GPU?
-
-## Option CPU: Easy to install but slow
+## Option CPU: slow but installing it is "Easy
 
 > Stick with the CPU version to start out, then install the GPU version once your training becomes more computationally demanding.
 
@@ -34,18 +30,82 @@ How can I find out if I have a GPU?
 
 -- <https://tensorflow.rstudio.com/installation/>
 
-## Install tensoflow: Auto
+## Failed locally and on rstudio.cloud
 
-```r
-# install.packages("tensorflow")
-Error: ...
+Locally with options auto and custom.
+On RStudio with option auto
 
-# devtools::install_github("rstudio/tensorflow") 
-Error: ...
-```
-
-## Install tensoflow: Custom
+Links:
 
 * <https://tensorflow.rstudio.com/installation/custom/>
 * <https://www.tensorflow.org/install/>
+
+## Success with with Docker
+
+<https://hub.docker.com/r/rocker/tensorflow>
+
+```
+-| rocker/tidyverse
+  -| rocker/tensorflow
+    -| rocker/ml
+  -| rocker/cuda 
+    -| rocker/tensorflow-gpu
+      -| rocker/ml-gpu
+    -| rocker/cuda-dev
+```
+
+## docker start tidyveerse -i
+
+```bash
+# docker run -e PASSWORD=123 -p 8787:8787 rocker/tidyverse
+docker start tidyveerse -i
+```
+
+## Back to the book
+
+```{r}
+# install.packages("tensorflow")
+tensorflow::install_tensorflow()
+```
+
+```{r}
+# install.packages("keras")
+keras::install_keras()
+```
+
+## House prices
+
+```{r}
+library(keras)
+```
+
+## Data
+
+```{r}
+dataset <- dataset_boston_housing()
+```
+
+
+
+
+## Data: works?
+
+<https://stackoverflow.com/questions/48006018/reading-npz-files-from-r>
+
+```{r}
+library(reticulate)
+np <- import("numpy")
+
+dataset <- np$load("data/boston_housing.npz")
+c(c(train_data, train_targets), c(test_data, test_targets)) %<-% dataset
+```
+
+
+
+
+
+
+```{r model}
+c(c(train_data, train_targets), c(test_data, test_targets)) %<-% dataset
+```
 
