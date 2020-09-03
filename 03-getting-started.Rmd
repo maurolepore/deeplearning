@@ -1,0 +1,51 @@
+---
+title: "Deep learning with R: Chapter 3"
+author: "Mauro"
+output: github_document
+---
+
+<https://livebook.manning.com/book/deep-learning-with-r/chapter-3/>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  cache = TRUE,
+  collapse = TRUE, 
+  comment = "#>",
+  echo = TRUE, 
+  error = TRUE
+)
+```
+
+# Install
+
+## Option GPU: Hard to install but fast
+
+How can I find out if I have a GPU?
+
+## Option CPU: Easy to install but slow
+
+> Stick with the CPU version to start out, then install the GPU version once your training becomes more computationally demanding.
+
+-- <https://tensorflow.rstudio.com/tools/local_gpu>
+
+## Quick start: via `install_tensorflow()`
+
+> `install_tensorflow()` ... provides an easy to use wrapper for the various steps required to install TensorFlow.
+
+-- <https://tensorflow.rstudio.com/installation/>
+
+## Install tensoflow: Auto
+
+```r
+# install.packages("tensorflow")
+Error: ...
+
+# devtools::install_github("rstudio/tensorflow") 
+Error: ...
+```
+
+## Install tensoflow: Custom
+
+* <https://tensorflow.rstudio.com/installation/custom/>
+* <https://www.tensorflow.org/install/>
+
