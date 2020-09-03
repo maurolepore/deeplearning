@@ -74,21 +74,5 @@ library(keras)
 
 ``` r
 dataset <- dataset_boston_housing()
-```
-
-## Data: works?
-
-<https://stackoverflow.com/questions/48006018/reading-npz-files-from-r>
-
-``` r
-library(reticulate)
-np <- import("numpy")
-
-dataset <- np$load("data/boston_housing.npz")
-c(c(train_data, train_targets), c(test_data, test_targets)) %<-% dataset
-#> Error: invalid `%<-%` right-hand side, incorrect number of values
-```
-
-``` r
 c(c(train_data, train_targets), c(test_data, test_targets)) %<-% dataset
 ```
