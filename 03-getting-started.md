@@ -32,6 +32,7 @@ library(tidyverse)
 library(tensorflow)
 library(keras)
 library(here)
+library(pins)
 library(fs)
 ```
 
@@ -99,12 +100,10 @@ housing %>% walk(hist)
 
 ``` r
 mean <- colMeans(train_data)
-mean <- apply(train_data, 2, sd)
+std <- apply(train_data, 2, sd)
 
 train_data <- scale(train_data, center = mean, scale = std)
-#> Error in scale.default(train_data, center = mean, scale = std): object 'std' not found
 test_data <- scale(test_data, center = mean, scale = std)
-#> Error in scale.default(test_data, center = mean, scale = std): object 'std' not found
 ```
 
 ## Nit
