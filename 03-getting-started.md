@@ -153,8 +153,7 @@ num_epochs <- 200L
 # Oh no!
 all_mae_histories <- NULL
 
-# for (i in 1:k) {
-for (i in seq_len(k)) {
+for (i in 1:k) {
   message("processing fold #", i, "\n")
   # cat("processing fold #", i, "\n")
   
@@ -182,30 +181,32 @@ for (i in seq_len(k)) {
   # Oh no!
   all_mae_histories <- rbind(all_mae_histories, mae_history)
 }
-#> processing fold #1
-#> processing fold #2
-#> processing fold #3
-#> processing fold #4
 ```
 
 ## Nit
 
 ``` r
-# average_mae_history <- data.frame(
-average_mae_history <- tibble(
-  # epoch = seq(1:ncol(all_mae_histories)),
-  # epoch = 1:ncol(all_mae_histories),
-  epoch = seq_along(all_mae_histories),
+average_mae_history <- data.frame(
+  epoch = seq(1:ncol(all_mae_histories)),
   validation_mae = apply(all_mae_histories, 2, mean)
 )
-#> Error in apply(all_mae_histories, 2, mean): dim(X) must have a positive length
 ```
-
-## Great plot
 
 ``` r
-average_mae_history %>% 
-  ggplot(aes(x = epoch, y = validation_mae)) + 
-  geom_smooth()
-#> Error in ggplot(., aes(x = epoch, y = validation_mae)): object 'average_mae_history' not found
+(m <- matrix(1:8, nrow = 2))
+#>      [,1] [,2] [,3] [,4]
+#> [1,]    1    3    5    7
+#> [2,]    2    4    6    8
+
+identical(
+  seq(1:ncol(m)),
+  1:ncol(m)
+)
+#> [1] TRUE
 ```
+
+## Great way to imporove the plot
+
+<img src=http://i.imgur.com/NvmJxCJ.png width=900/>
+
+<img src=http://i.imgur.com/cJvJbLP.png width=900/>

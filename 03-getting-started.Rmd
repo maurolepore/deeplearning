@@ -137,7 +137,7 @@ build_model <- function() {
 
 ## Trajectory; nit
 
-```{r}
+```{r, eval=FALSE}
 k <- 4L
 indices <- sample(1:nrow(train_data))
 folds <- cut(indices, breaks = k, labels = FALSE)
@@ -147,8 +147,7 @@ num_epochs <- 200L
 # Oh no!
 all_mae_histories <- NULL
 
-# for (i in 1:k) {
-for (i in seq_len(k)) {
+for (i in 1:k) {
   message("processing fold #", i, "\n")
   # cat("processing fold #", i, "\n")
   
@@ -180,37 +179,24 @@ for (i in seq_len(k)) {
 
 ## Nit
 
-```{r}
-# average_mae_history <- data.frame(
-average_mae_history <- tibble(
-  # epoch = seq(1:ncol(all_mae_histories)),
-  # epoch = 1:ncol(all_mae_histories),
-  epoch = seq_along(all_mae_histories),
+```{r eval=FALSE}
+average_mae_history <- data.frame(
+  epoch = seq(1:ncol(all_mae_histories)),
   validation_mae = apply(all_mae_histories, 2, mean)
 )
 ```
 
-## Syntax
-
 ```{r}
+(m <- matrix(1:8, nrow = 2))
+
 identical(
-  seq_along(mtcars),
-  1:ncol(mtcars)
+  seq(1:ncol(m)),
+  1:ncol(m)
 )
-
-x <- numeric(0)
-seq_along(x)
-1:length(x)
 ```
 
+## Great way to imporove the plot
 
-## Great plot
+<img src=http://i.imgur.com/NvmJxCJ.png width=900/>
 
-```{r}
-average_mae_history %>% 
-  ggplot(aes(x = epoch, y = validation_mae)) + 
-  geom_smooth()
-```
-
-
-
+<img src=http://i.imgur.com/cJvJbLP.png width=900/>
